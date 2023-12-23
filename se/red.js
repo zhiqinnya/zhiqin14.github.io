@@ -7,5 +7,5 @@ else if (ua.includes("Windows")){
     location.href = "https://down.pc.yyb.qq.com/channel/1913/2200900000/com_tencent_letsgo_installer.exe"
 }
 else{
-    location.herf = "https://gamer.qq.com/v2/cloudgame/game/96897?ichannel=pcgames0Fpcgames1"
+    location.href = "https://gamer.qq.com/v2/cloudgame/game/96897?ichannel=pcgames0Fpcgames1"
 }
