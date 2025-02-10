@@ -13,7 +13,8 @@ proxies:
   - {name: 🇦🇶 dciaq, server: dciaq.zhiqin.eu.org, port: 443, client-fingerprint: chrome, type: hysteria2, password: yuanshen.mihoyo, auth: yuanshen.mihoyo, sni: dciaq.zhiqin.eu.org, skip-cert-verify: false}
   - {name: 🇰🇷 dcikr, server: dcikr.zhiqin.eu.org, port: 41061, client-fingerprint: chrome, type: hysteria2, password: yuanshen.mihoyo, auth: yuanshen.mihoyo, sni: dcikr.zhiqin.eu.org, skip-cert-verify: false}
   - {name: 🇯🇵 dcijp (Opt.), server: dcijp.zhiqin.eu.org, port: 443, client-fingerprint: chrome, type: hysteria2, password: yuanshen.mihoyo, auth: yuanshen.mihoyo, sni: dcijp.zhiqin.eu.org, skip-cert-verify: false}
-  - {name: 🇺🇸 haxid, server: haxid.zhiqin.eu.org, port: 443, client-fingerprint: chrome, type: hysteria2, password: yuanshen.mihoyo, auth: yuanshen.mihoyo, sni: haxid.zhiqin.eu.org, skip-cert-verify: false}
+  - {name: 🇺🇸 haxus, server: haxus.zhiqin.eu.org, port: 443, client-fingerprint: chrome, type: hysteria2, password: yuanshen.mihoyo, auth: yuanshen.mihoyo, sni: haxus.zhiqin.eu.org, skip-cert-verify: false}
+  - {name: 🇩🇪 haxeu, server: haxeu.zhiqin.eu.org, port: 443, client-fingerprint: chrome, type: hysteria2, password: yuanshen.mihoyo, auth: yuanshen.mihoyo, sni: haxeu.zhiqin.eu.org, skip-cert-verify: false}
 proxy-groups:
 - name: 节点选择
   type: select
@@ -25,7 +26,8 @@ proxy-groups:
     - 🇦🇶 dciaq
     - 🇰🇷 dcikr
     - 🇯🇵 dcijp (Opt.)
-    - 🇺🇸 haxid
+    - 🇺🇸 haxus
+    - 🇩🇪 haxeu
 - name: 自动选择
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -37,7 +39,8 @@ proxy-groups:
     - 🇦🇶 dciaq
     - 🇰🇷 dcikr
     - 🇯🇵 dcijp (Opt.)
-    - 🇺🇸 haxid
+    - 🇺🇸 haxus
+    - 🇩🇪 haxeu
 - name: 微软服务
   type: select
   proxies:
