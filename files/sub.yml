@@ -1,0 +1,237 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: :9090
+dns:
+  enabled: true
+  ipv6: true
+  nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query', 'https://1.1.1.1/dns-query']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query', 'https://1.1.1.1/dns-query']
+proxies: 
+  # Direct
+  - {name: dcihk, server: dcihk.zhiqin.eu.org, port: 55228, client-fingerprint: chrome, type: hysteria2, password: 7aZDQO.o1w7An, auth: 7aZDQO.o1w7An, sni: dcihk.zhiqin.eu.org, skip-cert-verify: true}
+  - {name: dcijp, server: dcijp.zhiqin.eu.org, port: 55872, client-fingerprint: chrome, type: hysteria2, password: 0dUBDI.nXCICL, auth: 0dUBDI.nXCICL, sni: dcijp.zhiqin.eu.org, skip-cert-verify: true}
+  - {name: 🇧🇷 dcibr, server: dcibr.zhiqin.eu.org, port: 26111, client-fingerprint: chrome, type: hysteria2, password: ZVGk2Fkb.8TEvTHtL, auth: ZVGk2Fkb.8TEvTHtL, sni: dcibr.zhiqin.eu.org, skip-cert-verify: false}
+  # - {name: 🇦🇶 dciaq, server: dciaq.zhiqin.eu.org, port: 443, client-fingerprint: chrome, type: hysteria2, password: MLdDIc.G4zpcT, auth: MLdDIc.G4zpcT, sni: dciaq.zhiqin.eu.org, skip-cert-verify: false}
+  - {name: 🇰🇷 dcikr, server: dcikr.zhiqin.eu.org, port: 41061, client-fingerprint: chrome, type: hysteria2, password: EvLBAG5M.V0VCqdKh, auth: EvLBAG5M.V0VCqdKh, sni: dcikr.zhiqin.eu.org, skip-cert-verify: false}
+  - {name: 🇺🇸 haxus, server: haxus.zhiqin.eu.org, port: 53405, client-fingerprint: chrome, type: hysteria2, password: fs4r0Qs5.tMnJAKF1, auth: fs4r0Qs5.tMnJAKF1, sni: haxus.zhiqin.eu.org, skip-cert-verify: false}
+  - {name: 🇩🇪 haxeu, server: haxeu.zhiqin.eu.org, port: 52222, client-fingerprint: chrome, type: hysteria2, password: iyJ33nzo.nVxX0rkB, auth: iyJ33nzo.nVxX0rkB, sni: haxeu.zhiqin.eu.org, skip-cert-verify: false}
+
+  # Cloudflare CDN
+  - {name: hk, server: anQy4NMq.dh05.shop, port: 80, type: vmess, uuid: 33d7cf67-6548-48ae-9565-7e9c8f9b3a7a, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /qlz6e0an}}
+  - {name: jp, server: 4EQE24Hd.dh02.shop, port: 80, type: vmess, uuid: d8dd9e3f-8879-4cfe-cdbf-4b4b395fd480, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /blw81rfe}}
+  - {name: aq, server: 3MUrTWe8.dh03.shop, port: 80, type: vmess, uuid: 0c4406ba-d0a9-4886-c9e9-fdb83c623a4e, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /hnodpe6c}}
+  - {name: kr, server: manbaout.dh02.shop, port: 80, type: vmess, uuid: f14cbd7e-d396-4587-aa15-437f194a2391, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /f14cbd7e}}
+  - {name: br, server: VTJVAjzd.dh04.shop, port: 80, type: vmess, uuid: 8fb3728f-41a3-46ac-b16c-e282f8f43d02, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /3e30c6b0}}
+  - {name: us, server: hVzc5Nvj.dh01.shop, port: 80, type: vmess, uuid: 867cf303-9b1c-4e88-a3be-055c633287d4, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /t6zvpwxm}}
+  - {name: de, server: ui6s5N5g.dh02.shop, port: 80, type: vmess, uuid: 514f513f-0aeb-4b21-8f70-df3d866e0cf4, alterId: 0, cipher: auto, tls: false, network: ws, ws-opts: {path: /tepn4t0u}}
+proxy-groups:
+- name: 节点选择
+  type: select
+  proxies:
+    - 自动选择
+    - DIRECT
+    - Direct
+    - Cloudflare CDN
+- name: Direct
+  type: select
+  proxies:
+    - dcihk
+    - dcijp
+    - 🇧🇷 dcibr
+    - 🇰🇷 dcikr
+    - 🇺🇸 haxus
+    - 🇩🇪 haxeu
+- name: Cloudflare CDN
+  type: select
+  proxies:
+    - jp
+    - hk
+    - aq
+    - kr
+    - br
+    - us
+    - de
+- name: 自动选择
+  type: url-test
+  url: http://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  proxies:
+    - dcihk
+    - dcijp
+    - 🇧🇷 dcibr
+    - 🇰🇷 dcikr
+    - 🇺🇸 haxus
+    - 🇩🇪 haxeu
+    - jp
+    - hk
+    - aq
+    - kr
+    - br
+    - us
+    - de
+- name: 微软服务
+  type: select
+  proxies:
+    - DIRECT
+    - 节点选择
+- name: 苹果服务
+  type: select
+  proxies:
+    - 节点选择
+    - DIRECT
+- name: 漏网之鱼
+  type: select
+  proxies:
+    - 节点选择
+    - DIRECT
+    - 自动选择
+
+RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: 节点选择}
+RuleSet_domain: &RuleSet_domain {type: http, behavior: domain, interval: 43200, format: text, proxy: 节点选择}
+RuleSet_ipcidr: &RuleSet_ipcidr {type: http, behavior: ipcidr, interval: 43200, format: text, proxy: 节点选择}
+
+rule-providers:
+  reject_non_ip_no_drop:
+    <<: *RuleSet_classical
+    url: 'https://ruleset.skk.moe/Clash/non_ip/reject-no-drop.txt'
+    path: './rule_set/sukkaw_ruleset/reject_non_ip_no_drop.txt'
+
+  reject_non_ip_drop:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/reject-drop.txt
+    path: ./rule_set/sukkaw_ruleset/reject_non_ip_drop.txt
+
+  reject_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/reject.txt
+    path: ./rule_set/sukkaw_ruleset/reject_non_ip.txt
+
+  reject_domainset:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/reject.txt
+    path: ./rule_set/sukkaw_ruleset/reject_domainset.txt
+
+  reject_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/reject.txt
+    path: ./rule_set/sukkaw_ruleset/reject_ip.txt
+
+  cdn_domainset:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/cdn.txt
+    path: ./rule_set/sukkaw_ruleset/cdn_domainset.txt
+
+  cdn_non_ip:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/non_ip/cdn.txt
+    path: ./rule_set/sukkaw_ruleset/cdn_non_ip.txt
+
+  ai_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/ai.txt
+    path: ./rule_set/sukkaw_ruleset/ai_non_ip.txt
+
+  telegram_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/telegram.txt
+    path: ./rule_set/sukkaw_ruleset/telegram_non_ip.txt
+
+  telegram_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/telegram.txt
+    path: ./rule_set/sukkaw_ruleset/telegram_ip.txt
+
+  apple_cdn:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt
+    path: ./rule_set/sukkaw_ruleset/apple_cdn.txt
+
+  apple_services:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/apple_services.txt
+    path: ./rule_set/sukkaw_ruleset/apple_services.txt
+
+  apple_cn_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt
+    path: ./rule_set/sukkaw_ruleset/apple_cn_non_ip.txt
+  
+  microsoft_cdn_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt
+    path: ./rule_set/sukkaw_ruleset/microsoft_cdn_non_ip.txt
+
+  microsoft_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft.txt
+    path: ./rule_set/sukkaw_ruleset/microsoft_non_ip.txt
+  
+  download_domainset:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/download.txt
+    path: ./rule_set/sukkaw_ruleset/download_domainset.txt
+  download_non_ip:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/non_ip/download.txt
+    path: ./rule_set/sukkaw_ruleset/download_non_ip.txt
+
+  lan_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/lan.txt
+    path: ./rule_set/sukkaw_ruleset/lan_non_ip.txt
+  lan_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/lan.txt
+    path: ./rule_set/sukkaw_ruleset/lan_ip.txt
+  
+  domestic_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/domestic.txt
+    path: ./rule_set/sukkaw_ruleset/domestic_non_ip.txt
+  direct_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/direct.txt
+    path: ./rule_set/sukkaw_ruleset/direct_non_ip.txt
+  global_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/global.txt
+    path: ./rule_set/sukkaw_ruleset/global_non_ip.txt
+  domestic_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/domestic.txt
+    path: ./rule_set/sukkaw_ruleset/domestic_ip.txt
+
+  china_ip:
+    <<: *RuleSet_ipcidr
+    url: https://ruleset.skk.moe/Clash/ip/china_ip.txt
+    path: ./rule_set/sukkaw_ruleset/china_ip.txt
+
+rules:
+  - RULE-SET,reject_non_ip,REJECT
+  - RULE-SET,reject_domainset,REJECT
+  - RULE-SET,reject_non_ip_drop,REJECT-DROP
+  - RULE-SET,reject_non_ip_no_drop,REJECT
+  - RULE-SET,apple_cdn,DIRECT
+  - RULE-SET,domestic_non_ip,DIRECT
+  - RULE-SET,direct_non_ip,DIRECT
+  - RULE-SET,lan_non_ip,DIRECT
+  - RULE-SET,microsoft_cdn_non_ip,DIRECT
+  - RULE-SET,apple_cn_non_ip,DIRECT  
+  - RULE-SET,reject_ip,REJECT
+  - RULE-SET,lan_ip,DIRECT
+  - RULE-SET,domestic_ip,DIRECT
+  - RULE-SET,china_ip,DIRECT
+  - RULE-SET,cdn_domainset,节点选择
+  - RULE-SET,cdn_non_ip,节点选择
+  - RULE-SET,telegram_non_ip,节点选择
+  - RULE-SET,download_domainset,节点选择
+  - RULE-SET,download_non_ip,节点选择
+  - RULE-SET,apple_services,苹果服务
+  - RULE-SET,microsoft_non_ip,微软服务
+  - RULE-SET,ai_non_ip,节点选择
+  - RULE-SET,global_non_ip,节点选择
+  - RULE-SET,telegram_ip,节点选择
+  - MATCH,漏网之鱼
