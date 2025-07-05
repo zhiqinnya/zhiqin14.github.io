@@ -1,0 +1,294 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 0.0.0.0:11452
+dns:
+  enabled: true
+  ipv6: true
+  nameserver: ['https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query', 'https://1.1.1.1/dns-query']
+  proxy-server-nameserver: ['https://dns.alidns.com/dns-query', 'https://1.1.1.1/dns-query']
+proxies: 
+  # Direct
+  - {name: JP-UDP, server: dcijp.zhiqin.eu.org, port: 43153, client-fingerprint: chrome, type: hysteria2, password: KRDVIo.kTZzDB, auth: KRDVIo.kTZzDB, sni: dcijp.zhiqin.eu.org, skip-cert-verify: true}
+  - {name: JP-TCP, server: 45.192.242.116, port: 28826, client-fingerprint: chrome, type: vmess, uuid: d8dd9e3f-8879-4cfe-cdbf-4b4b395fd480, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /iGRPEewB}}
+  - {name: Chuncheon, server: 2603:c024:4:57cc:4390:f3a8:16c9:3acf, port: 53524, client-fingerprint: chrome, type: vmess, uuid: 0768f2e8-684d-4bd7-afbf-9621c6bed776, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /Y7fxPVQU}}
+  - {name: Seoul, server: 2603:c022:8012:c0c0:19b7:85f3:1f9e:899a, port: 26327, client-fingerprint: chrome, type: vmess, uuid: a708d474-230c-41f6-a1b3-d87bdafb5581, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /gBwk5j8f}}
+  - {name: US2-Poland, server: 2602:294:0:b7:1234:1234:c5a1:0001, port: 52398, client-fingerprint: chrome, type: vmess, uuid: 89154650-2e1a-4bfb-807b-206768a5493c, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /ZGRnyu47}}
+
+  # CDN
+  - {name: hk-cdn, server: zk2r8usp.dh02.shop, port: 80, client-fingerprint: chrome, type: vmess, uuid: 86dcd5cd-94b4-4ca1-eb69-c7070f869b87, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /Ege7LgVo}}
+  - {name: jp-cdn, server: G1z97uct.dh03.shop, port: 80, client-fingerprint: chrome, type: vmess, uuid: d8dd9e3f-8879-4cfe-cdbf-4b4b395fd480, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /G8AtU1Uk}}
+  - {name: aq-cdn, server: bDyiRGD6.dh01.shop, port: 80, client-fingerprint: chrome, type: vmess, uuid: 0c4406ba-d0a9-4886-c9e9-fdb83c623a4e, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /jbR8bfEs}}
+  - {name: chuncheon-cdn, server: 9QmhCb5p.dh04.shop, port: 80, client-fingerprint: chrome, type: vmess, uuid: 0768f2e8-684d-4bd7-afbf-9621c6bed776, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /TpJX3Rjn}}
+  - {name: seoul-cdn, server: 9rUYuP10.dh01.shop, port: 80, client-fingerprint: chrome, type: vmess, uuid: a708d474-230c-41f6-a1b3-d87bdafb5581, alterId: 0, cipher: auto, mptcp: true, tfo: true, network: ws, ws-opts: {path: /o08NuoPf}}
+
+  # IEPL
+  
+  # 腾讯云 1
+  - {name: 1 ProtonHK, server: 106.52.248.229, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: 1 dcihk, server: 106.52.248.229, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+  # 腾讯云 2
+  - {name: 2 ProtonHK, server: 193.112.165.185, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: 2 dcihk, server: 193.112.165.185, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+  # 腾讯云 3
+  - {name: 3 ProtonHK, server: 129.204.181.204, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: 3 dcihk, server: 129.204.181.204, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+  # 腾讯云 4
+  - {name: 4 ProtonHK, server: 43.136.79.49, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: 4 dcihk, server: 43.136.79.49, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+  # 腾讯云 5
+  - {name: 5 ProtonHK, server: 114.132.158.13, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: 5 dcihk, server: 114.132.158.13, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+
+  # UCloud
+  - {name: UC ProtonHK, server: 106.75.136.238, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: false, mtcp: true}
+  - {name: UC 香港, server: 106.75.136.238, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: false}
+
+  # 三网入口
+
+  # 电信
+  - {name: CT ProtonHK, server: 113.108.6.60, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: CT dcihk, server: 113.108.6.60, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+  # 联通
+  - {name: CU ProtonHK, server: 58.251.126.112, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: CU dcihk, server: 58.251.126.112, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+  # 移动
+  - {name: CM ProtonHK, server: 120.233.56.87, port: 28134, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: 01JN9EB3ZY3H68HSQBNGS2AXSP, tfo: true, udp: true, mtcp: true}
+  - {name: CM dcihk, server: 120.233.56.87, port: 26008, client-fingerprint: chrome, type: ss, cipher: aes-128-gcm, password: ajAK2rfHp2NgH2h+izHStsPPvgfIatebmgK6tuiX/xg=, tfo: true, udp: true}
+
+proxy-groups:
+- name: 节点选择
+  type: select
+  proxies:
+    - DIRECT
+    - Direct
+    - CDN
+    - 腾讯云
+- name: Direct
+  type: select
+  proxies:
+    - JP
+    - Chuncheon
+    - Seoul
+    - US2-Poland
+- name: JP
+  type: url-test
+  proxies:
+    - JP-UDP
+    - JP-TCP
+  url: 'https://cp.cloudflare.com/'
+  interval: 300
+- name: CDN
+  type: select
+  proxies:
+    - hk-cdn
+    - jp-cdn
+    - aq-cdn
+    - chuncheon-cdn
+    - seoul-cdn
+- name: 腾讯云
+  type: select
+  proxies:
+    - 腾讯云香港
+    - 腾讯云 Proton
+    - UC ProtonHK
+    - UC 香港
+    - 三网 Proton
+    - 三网香港
+- name: 腾讯云 Proton
+  type: load-balance
+  proxies:
+    - 1 ProtonHK
+    - 2 ProtonHK
+    - 3 ProtonHK
+    - 4 ProtonHK
+    - 5 ProtonHK
+  url: 'https://cp.cloudflare.com/'
+  interval: 300
+  strategy: round-robin
+- name: 腾讯云香港
+  type: load-balance
+  proxies:
+    - 1 dcihk
+    - 2 dcihk
+    - 3 dcihk
+    - 4 dcihk
+    - 5 dcihk
+  url: 'https://cp.cloudflare.com/'
+  interval: 300
+  strategy: round-robin
+- name: 三网 Proton
+  type: select
+  proxies:
+    - CM ProtonHK
+    - CU ProtonHK
+    - CT ProtonHK
+- name: 三网香港
+  type: select
+  proxies:
+    - CM dcihk
+    - CU dcihk
+    - CT dcihk
+- name: 微软服务
+  type: select
+  proxies:
+    - DIRECT
+    - 节点选择
+- name: 苹果服务
+  type: select
+  proxies:
+    - 节点选择
+    - DIRECT
+- name: 漏网之鱼
+  type: select
+  proxies:
+    - 节点选择
+    - DIRECT
+
+RuleSet_classical: &RuleSet_classical {type: http, behavior: classical, interval: 43200, format: text, proxy: 节点选择}
+RuleSet_domain: &RuleSet_domain {type: http, behavior: domain, interval: 43200, format: text, proxy: 节点选择}
+RuleSet_ipcidr: &RuleSet_ipcidr {type: http, behavior: ipcidr, interval: 43200, format: text, proxy: 节点选择}
+
+rule-providers:
+  reject_non_ip_no_drop:
+    <<: *RuleSet_classical
+    url: 'https://ruleset.skk.moe/Clash/non_ip/reject-no-drop.txt'
+    path: './rule_set/sukkaw_ruleset/reject_non_ip_no_drop.txt'
+
+  reject_non_ip_drop:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/reject-drop.txt
+    path: ./rule_set/sukkaw_ruleset/reject_non_ip_drop.txt
+
+  reject_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/reject.txt
+    path: ./rule_set/sukkaw_ruleset/reject_non_ip.txt
+
+  reject_domainset:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/reject.txt
+    path: ./rule_set/sukkaw_ruleset/reject_domainset.txt
+
+  reject_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/reject.txt
+    path: ./rule_set/sukkaw_ruleset/reject_ip.txt
+
+  cdn_domainset:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/cdn.txt
+    path: ./rule_set/sukkaw_ruleset/cdn_domainset.txt
+
+  cdn_non_ip:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/non_ip/cdn.txt
+    path: ./rule_set/sukkaw_ruleset/cdn_non_ip.txt
+
+  ai_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/ai.txt
+    path: ./rule_set/sukkaw_ruleset/ai_non_ip.txt
+
+  telegram_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/telegram.txt
+    path: ./rule_set/sukkaw_ruleset/telegram_non_ip.txt
+
+  telegram_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/telegram.txt
+    path: ./rule_set/sukkaw_ruleset/telegram_ip.txt
+
+  apple_cdn:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/apple_cdn.txt
+    path: ./rule_set/sukkaw_ruleset/apple_cdn.txt
+
+  apple_services:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/apple_services.txt
+    path: ./rule_set/sukkaw_ruleset/apple_services.txt
+
+  apple_cn_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/apple_cn.txt
+    path: ./rule_set/sukkaw_ruleset/apple_cn_non_ip.txt
+  
+  microsoft_cdn_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft_cdn.txt
+    path: ./rule_set/sukkaw_ruleset/microsoft_cdn_non_ip.txt
+
+  microsoft_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/microsoft.txt
+    path: ./rule_set/sukkaw_ruleset/microsoft_non_ip.txt
+  
+  download_domainset:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/domainset/download.txt
+    path: ./rule_set/sukkaw_ruleset/download_domainset.txt
+  download_non_ip:
+    <<: *RuleSet_domain
+    url: https://ruleset.skk.moe/Clash/non_ip/download.txt
+    path: ./rule_set/sukkaw_ruleset/download_non_ip.txt
+
+  lan_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/lan.txt
+    path: ./rule_set/sukkaw_ruleset/lan_non_ip.txt
+  lan_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/lan.txt
+    path: ./rule_set/sukkaw_ruleset/lan_ip.txt
+  
+  domestic_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/domestic.txt
+    path: ./rule_set/sukkaw_ruleset/domestic_non_ip.txt
+  direct_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/direct.txt
+    path: ./rule_set/sukkaw_ruleset/direct_non_ip.txt
+  global_non_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/non_ip/global.txt
+    path: ./rule_set/sukkaw_ruleset/global_non_ip.txt
+  domestic_ip:
+    <<: *RuleSet_classical
+    url: https://ruleset.skk.moe/Clash/ip/domestic.txt
+    path: ./rule_set/sukkaw_ruleset/domestic_ip.txt
+
+  china_ip:
+    <<: *RuleSet_ipcidr
+    url: https://ruleset.skk.moe/Clash/ip/china_ip.txt
+    path: ./rule_set/sukkaw_ruleset/china_ip.txt
+
+rules:
+  - RULE-SET,reject_non_ip,REJECT
+  - RULE-SET,reject_domainset,REJECT
+  - RULE-SET,reject_non_ip_drop,REJECT-DROP
+  - RULE-SET,reject_non_ip_no_drop,REJECT
+  - RULE-SET,apple_cdn,DIRECT
+  - RULE-SET,domestic_non_ip,DIRECT
+  - RULE-SET,direct_non_ip,DIRECT
+  - RULE-SET,lan_non_ip,DIRECT
+  - RULE-SET,microsoft_cdn_non_ip,DIRECT
+  - RULE-SET,apple_cn_non_ip,DIRECT
+  - RULE-SET,reject_ip,REJECT
+  - RULE-SET,lan_ip,DIRECT
+  - RULE-SET,domestic_ip,DIRECT
+  - RULE-SET,china_ip,DIRECT
+  - RULE-SET,cdn_domainset,节点选择
+  - RULE-SET,cdn_non_ip,节点选择
+  - RULE-SET,telegram_non_ip,节点选择
+  - RULE-SET,download_domainset,节点选择
+  - RULE-SET,download_non_ip,节点选择
+  - RULE-SET,apple_services,苹果服务
+  - RULE-SET,microsoft_non_ip,微软服务
+  - RULE-SET,ai_non_ip,节点选择
+  - RULE-SET,global_non_ip,节点选择
+  - RULE-SET,telegram_ip,节点选择
+  - MATCH,漏网之鱼
